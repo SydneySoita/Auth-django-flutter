@@ -4,6 +4,8 @@ import 'package:authfrontend/register.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'homepage.dart';
+
 class RegistrationScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -23,7 +25,7 @@ class RegistrationScreen extends StatelessWidget {
       // Registration successful, navigate to login screen
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => HomepageScreen()),
       );
     } else {
       // Registration failed, display error message

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:authfrontend/homepage.dart';
 import 'package:authfrontend/register.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -20,6 +21,9 @@ class LoginScreen extends StatelessWidget {
       );
 
       if (response.statusCode == 200) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomepageScreen()));
+
         // Login successful, display success message
         showDialog(
           context: context,
@@ -75,7 +79,7 @@ class LoginScreen extends StatelessWidget {
         title: Text('Login'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(6.0),
         child: Column(
           children: [
             TextField(

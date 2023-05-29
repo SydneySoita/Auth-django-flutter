@@ -54,6 +54,15 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:63379', 
+# ]
+
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://localhost:63379',
+    
+
+
 ROOT_URLCONF = 'authbackend.urls'
 
 TEMPLATES = [

@@ -5,6 +5,6 @@ from authapp import views
 
 urlpatterns = [
     path('register/', views.register, name='register'),
-    path('login/', auth_views.LoginView.as_view,name='login'),
-    # path('login/', views.login, name='login'),
+    # path('login/', auth_views.LoginView.as_view,name='login'),
+    path('login/', views.user_login, name='login'),
 ]
