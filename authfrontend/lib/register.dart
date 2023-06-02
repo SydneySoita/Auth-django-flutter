@@ -13,27 +13,44 @@ class RegistrationScreen extends StatelessWidget {
   void registerUser(BuildContext context) async {
     final url = 'http://127.0.0.1:8000/api/register/';
 
-    final response = await http.post(
-      Uri.parse(url),
-      body: {
-        'email': emailController.text,
-        'password': passwordController.text,
-      },
-    );
-
-    if (response.statusCode == 200) {
-      // Registration successful, navigate to login screen
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomepageScreen()),
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        body: {
+          'email': emailController.text,
+          'password': passwordController.text,
+        },
       );
-    } else {
-      // Registration failed, display error message
+
+      if (response.statusCode == 200) {
+        // Registration successful, navigate to login screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomepageScreen()),
+        );
+      } else {
+        // Registration failed, display error message
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Registration Failed'),
+            content: Text('Failed to register user'),
+            actions: [
+              TextButton(
+                child: Text('OK'),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+        );
+      }
+    } catch (e) {
+      // Handle network or API errors
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Registration Failed'),
-          content: Text('Failed to register user'),
+          title: Text('Error'),
+          content: Text('Failed to connect to the server'),
           actions: [
             TextButton(
               child: Text('OK'),
@@ -43,25 +60,6 @@ class RegistrationScreen extends StatelessWidget {
         ),
       );
     }
-
-    // try {
-
-    // } catch (e) {
-    //   // Handle network or API errors
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) => AlertDialog(
-    //       title: Text('Error'),
-    //       content: Text('Failed to connect to the server'),
-    //       actions: [
-    //         TextButton(
-    //           child: Text('OK'),
-    //           onPressed: () => Navigator.pop(context),
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // }
   }
 
   @override
